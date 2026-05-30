@@ -62,62 +62,62 @@ const aiAgents: Array<{
 }> = [
   {
     name: 'Claude',
-    image: '/assets/ai-agents/claude.webp',
+    image: '/assets/ai-agent-icons/claude.webp',
     accent: '#D97757',
   },
   {
     name: 'Codex',
-    image: '/assets/ai-agents/codex.webp',
+    image: '/assets/ai-agent-icons/codex.webp',
     accent: '#22C55E',
   },
   {
     name: 'ChatGPT',
-    image: '/assets/ai-agents/chatgpt.webp',
+    image: '/assets/ai-agent-icons/chatgpt.webp',
     accent: '#10A37F',
   },
   {
     name: 'Antigravity',
-    image: '/assets/ai-agents/antigravity.webp',
+    image: '/assets/ai-agent-icons/antigravity.webp',
     accent: '#8B5CF6',
   },
   {
     name: 'Kimi',
-    image: '/assets/ai-agents/kimi.webp',
+    image: '/assets/ai-agent-icons/kimi.webp',
     accent: '#38BDF8',
   },
   {
     name: 'Gemini',
-    image: '/assets/ai-agents/gemini.webp',
+    image: '/assets/ai-agent-icons/gemini.webp',
     accent: '#A78BFA',
   },
   {
     name: 'Cursor',
-    image: '/assets/ai-agents/cursor.webp',
+    image: '/assets/ai-agent-icons/cursor.webp',
     accent: '#F8FAFC',
   },
   {
     name: 'GitHub Copilot',
-    image: '/assets/ai-agents/github-copilot.webp',
+    image: '/assets/ai-agent-icons/github-copilot.webp',
     accent: '#7C3AED',
   },
   {
     name: 'Perplexity',
-    image: '/assets/ai-agents/perplexity.webp',
+    image: '/assets/ai-agent-icons/perplexity.webp',
     accent: '#20B8CD',
   },
   {
     name: 'Grok',
-    image: '/assets/ai-agents/grok.webp',
+    image: '/assets/ai-agent-icons/grok.webp',
     accent: '#F59E0B',
   },
   {
     name: 'Windsurf',
-    image: '/assets/ai-agents/windsurf.webp',
+    image: '/assets/ai-agent-icons/windsurf.webp',
     accent: '#06B6D4',
   },
   {
     name: 'Replit AI',
-    image: '/assets/ai-agents/replit-ai.webp',
+    image: '/assets/ai-agent-icons/replit-ai.webp',
     accent: '#F97316',
   },
 ];
