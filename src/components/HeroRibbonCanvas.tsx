@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import * as THREE from 'three';
@@ -106,8 +106,26 @@ function RibbonMesh() {
 }
 
 const HeroRibbonCanvas: React.FC = () => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: '160px 0px' }
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
+      ref={wrapperRef}
       style={{
         position: 'absolute',
         inset: 0,
@@ -117,8 +135,9 @@ const HeroRibbonCanvas: React.FC = () => {
     >
       <Canvas
         camera={{ position: [0, -8, 5], fov: 75 }}
-        gl={{ antialias: true, alpha: true }}
-        frameloop="always"
+        gl={{ antialias: false, alpha: true, powerPreference: 'low-power' }}
+        frameloop={isVisible ? 'always' : 'never'}
+        dpr={[1, 1.5]}
         style={{ background: 'transparent' }}
       >
         <RibbonMesh />

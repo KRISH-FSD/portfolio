@@ -10,23 +10,28 @@ export function useLenis() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.1,
+      lerp: 0.08,
       smoothWheel: true,
+      wheelMultiplier: 0.9,
     });
 
     lenisRef.current = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const raf = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
 
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.add(raf);
+
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
+      gsap.ticker.remove(raf);
+      lenis.off('scroll', ScrollTrigger.update);
       lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
+      lenisRef.current = null;
     };
   }, []);
 

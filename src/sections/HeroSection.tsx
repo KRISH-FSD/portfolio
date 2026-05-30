@@ -251,7 +251,7 @@ const HeroSection: React.FC = () => {
               className="stack-item font-playfair font-semibold uppercase text-white leading-[1.05] opacity-0 translate-y-[30px] whitespace-nowrap"
               style={{ fontSize: 'clamp(28px, 3vw, 46px)' }}
             >
-              UI/UX
+              FULL STACK
             </span>
             <span
               className="stack-item font-playfair font-semibold uppercase text-white leading-[1.05] opacity-0 translate-y-[30px] whitespace-nowrap"

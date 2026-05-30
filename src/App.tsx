@@ -1,8 +1,9 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy } from 'react';
 import { useLenis } from '@/hooks/useLenis';
 import { useHeadingReveal } from '@/hooks/useHeadingReveal';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import LazySection from '@/components/LazySection';
 import HeroSection from '@/sections/HeroSection';
 
 const AboutSection = lazy(() => import('@/sections/AboutSection'));
@@ -21,14 +22,24 @@ const App: React.FC = () => {
       <Navigation lenisRef={lenisRef} />
       <main>
         <HeroSection />
-        <Suspense fallback={null}>
+        <LazySection minHeight="640px">
           <AboutSection />
+        </LazySection>
+        <LazySection minHeight="620px">
           <SkillsSection />
+        </LazySection>
+        <LazySection minHeight="720px">
           <PortfolioSection />
+        </LazySection>
+        <LazySection minHeight="520px">
           <OtherWorksSection />
+        </LazySection>
+        <LazySection minHeight="620px">
           <ProcessSection />
+        </LazySection>
+        <LazySection minHeight="520px">
           <CollaborationSection />
-        </Suspense>
+        </LazySection>
       </main>
       <Footer />
     </div>

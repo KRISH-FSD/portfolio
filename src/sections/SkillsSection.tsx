@@ -1,6 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {
+  Bot,
+  BrainCircuit,
+  Code2,
+  Compass,
+  Github,
+  MessageCircle,
+  Orbit,
+  Search,
+  Sparkles,
+  TerminalSquare,
+  Waves,
+  Zap,
+  type LucideIcon,
+} from 'lucide-react';
 import HeadingReveal from '@/components/HeadingReveal';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,54 +71,83 @@ const skills = [
   },
 ];
 
-const aiAgents = [
+const aiAgents: Array<{
+  name: string;
+  image: string;
+  icon: LucideIcon;
+  accent: string;
+}> = [
   {
     name: 'Claude',
     image: '/assets/ai-agents/claude.webp',
+    icon: BrainCircuit,
+    accent: '#D97757',
   },
   {
     name: 'Codex',
     image: '/assets/ai-agents/codex.webp',
+    icon: TerminalSquare,
+    accent: '#22C55E',
   },
   {
     name: 'ChatGPT',
     image: '/assets/ai-agents/chatgpt.webp',
+    icon: MessageCircle,
+    accent: '#10A37F',
   },
   {
     name: 'Antigravity',
     image: '/assets/ai-agents/antigravity.webp',
+    icon: Orbit,
+    accent: '#8B5CF6',
   },
   {
     name: 'Kimi',
     image: '/assets/ai-agents/kimi.webp',
+    icon: Bot,
+    accent: '#38BDF8',
   },
   {
     name: 'Gemini',
     image: '/assets/ai-agents/gemini.webp',
+    icon: Sparkles,
+    accent: '#A78BFA',
   },
   {
     name: 'Cursor',
     image: '/assets/ai-agents/cursor.webp',
+    icon: Code2,
+    accent: '#F8FAFC',
   },
   {
     name: 'GitHub Copilot',
     image: '/assets/ai-agents/github-copilot.webp',
+    icon: Github,
+    accent: '#7C3AED',
   },
   {
     name: 'Perplexity',
     image: '/assets/ai-agents/perplexity.webp',
+    icon: Search,
+    accent: '#20B8CD',
   },
   {
     name: 'Grok',
     image: '/assets/ai-agents/grok.webp',
+    icon: Zap,
+    accent: '#F59E0B',
   },
   {
     name: 'Windsurf',
     image: '/assets/ai-agents/windsurf.webp',
+    icon: Waves,
+    accent: '#06B6D4',
   },
   {
     name: 'Replit AI',
     image: '/assets/ai-agents/replit-ai.webp',
+    icon: Compass,
+    accent: '#F97316',
   },
 ];
 
@@ -232,9 +276,16 @@ const SkillsSection: React.FC = () => {
           >
             <div className="skill-marquee-track skill-marquee-track-reverse">
               {[...aiAgents, ...aiAgents].map((agent, index) => (
-                <div className="skill-marquee-card ai-agent-card" key={`${agent.name}-${index}`}>
+                <div
+                  className="skill-marquee-card ai-agent-card"
+                  key={`${agent.name}-${index}`}
+                  style={{ '--agent-accent': agent.accent } as React.CSSProperties}
+                >
                   <div className="skill-marquee-icon ai-agent-icon">
                     <img src={agent.image} alt="" width={28} height={28} loading="lazy" decoding="async" />
+                    <span className="ai-agent-toolmark" aria-hidden="true">
+                      <agent.icon size={12} strokeWidth={2.4} />
+                    </span>
                   </div>
                   <span>{agent.name}</span>
                 </div>

@@ -22,14 +22,23 @@ export function useParticles(canvasRef: React.RefObject<HTMLCanvasElement | null
     let particles: Particle[] = [];
     let width = 0;
     let height = 0;
+    let isVisible = true;
+    let lastFrame = 0;
+    let observer: IntersectionObserver | null = null;
 
-    const PARTICLE_COUNT = 30;
-    const CONNECTION_DISTANCE = 100;
-    const MAX_CONNECTIONS = 3;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const PARTICLE_COUNT = reduceMotion ? 12 : 20;
+    const CONNECTION_DISTANCE = 92;
+    const MAX_CONNECTIONS = 2;
+    const FRAME_INTERVAL = 1000 / 30;
 
     const resize = () => {
-      width = canvas.width = canvas.offsetWidth;
-      height = canvas.height = canvas.offsetHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      width = canvas.offsetWidth;
+      height = canvas.offsetHeight;
+      canvas.width = Math.max(1, Math.floor(width * dpr));
+      canvas.height = Math.max(1, Math.floor(height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     resize();
@@ -48,7 +57,21 @@ export function useParticles(canvasRef: React.RefObject<HTMLCanvasElement | null
       particles.push(createParticle());
     }
 
-    const draw = () => {
+    observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { rootMargin: '180px 0px' }
+    );
+    observer.observe(canvas);
+
+    const draw = (time = 0) => {
+      animationRef.current = requestAnimationFrame(draw);
+
+      if (!isVisible) return;
+      if (time - lastFrame < FRAME_INTERVAL) return;
+      lastFrame = time;
+
       ctx.clearRect(0, 0, width, height);
 
       // Move particles
@@ -91,8 +114,6 @@ export function useParticles(canvasRef: React.RefObject<HTMLCanvasElement | null
           }
         }
       }
-
-      animationRef.current = requestAnimationFrame(draw);
     };
 
     draw();
@@ -100,6 +121,7 @@ export function useParticles(canvasRef: React.RefObject<HTMLCanvasElement | null
     return () => {
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener('resize', resize);
+      observer?.disconnect();
     };
   }, [canvasRef]);
 }
