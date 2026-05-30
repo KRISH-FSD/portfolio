@@ -204,6 +204,10 @@
     padding-left: clamp(18px, 3vw, 32px);
   }
 
+  .portfolio-mobile-title {
+    display: none;
+  }
+
   .portfolio-showcase-grid {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -401,6 +405,19 @@
     .portfolio-showcase {
       padding-top: 76px;
       padding-bottom: 84px;
+    }
+
+    .portfolio-desktop-title {
+      display: none;
+    }
+
+    .portfolio-mobile-title {
+      display: block;
+      font-size: clamp(44px, 14vw, 62px);
+      letter-spacing: 0.02em;
+      line-height: 0.94;
+      overflow-wrap: normal;
+      white-space: normal;
     }
 
     .portfolio-showcase-copy {

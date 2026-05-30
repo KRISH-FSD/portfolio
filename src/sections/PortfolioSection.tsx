@@ -276,7 +276,7 @@ const PortfolioSection: React.FC = () => {
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
         <div className="portfolio-showcase-header mb-12 md:mb-16">
           <h2
-            className="font-playfair uppercase text-white"
+            className="portfolio-desktop-title font-playfair uppercase text-white"
             style={{
               fontSize: 'clamp(48px, 8vw, 120px)',
               letterSpacing: '0.02em',
@@ -284,6 +284,9 @@ const PortfolioSection: React.FC = () => {
             }}
           >
             <HeadingReveal text="Selected Work" cursiveLastWord />
+          </h2>
+          <h2 className="portfolio-mobile-title font-playfair uppercase text-white">
+            Selected Work
           </h2>
           <p className="portfolio-showcase-copy">
             Data-driven apps, responsive websites, and internship project work shaped into practical, polished experiences.
