@@ -197,40 +197,47 @@ const SkillsSection: React.FC = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="skills-section relative w-full overflow-hidden pt-10 pb-20 md:pt-14 md:pb-32"
-      style={{
-        background: 'linear-gradient(180deg, #0E0A0B 0%, #1a0809 42%, #0E0A0B 100%)',
-      }}
+      className="skills-section relative w-full overflow-hidden py-20 md:py-32"
     >
-      <div className="absolute left-0 top-24 h-72 w-72 rounded-full bg-[#D94436]/10 blur-[86px]" />
-      <div className="absolute bottom-16 right-0 h-80 w-[42vw] rounded-full bg-[#8B1A1A]/14 blur-[96px]" />
-
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20">
-        <div ref={contentRef} className="mb-12 opacity-0 md:mb-16">
-          <span className="mb-3 block font-inter text-xs uppercase tracking-[0.18em] text-vermilion/80">
-            Resume based tech stack
-          </span>
-          <h2
-            className="mb-5 font-playfair uppercase text-white"
-            style={{
-              fontSize: 'clamp(48px, 8vw, 120px)',
-              letterSpacing: '0.02em',
-              lineHeight: 1.0,
-            }}
-          >
-            SKILLS
-          </h2>
-          <p className="max-w-[620px] font-inter text-sm leading-[1.85] text-cream/78 md:text-base">
-            Tools and technologies I use for frontend interfaces, Flask backend
-            work, database handling, and project delivery.
-          </p>
+        <div ref={contentRef} className="skills-header mb-12 opacity-0 md:mb-16">
+          <div>
+            <span className="skills-eyebrow">
+              Resume based tech stack
+            </span>
+            <h2
+              className="font-playfair uppercase text-white"
+              style={{
+                fontSize: 'clamp(56px, 9vw, 132px)',
+                letterSpacing: '0.02em',
+                lineHeight: 0.9,
+              }}
+            >
+              Skills
+            </h2>
+          </div>
+          <div className="skills-copy">
+            <p>
+              Tools and technologies I use for frontend interfaces, Flask backend
+              work, database handling, and project delivery.
+            </p>
+            <div className="skills-pills" aria-label="Skill categories">
+              <span>Frontend</span>
+              <span>Backend</span>
+              <span>AI Workflow</span>
+            </div>
+          </div>
         </div>
 
-        <div
-          ref={marqueeRef}
-          className="skill-marquee-shell opacity-0"
-          aria-label="Known skills scrolling from right to left"
-        >
+        <div ref={marqueeRef} className="skill-lane opacity-0">
+          <div className="skill-lane-heading">
+            <span className="skill-lane-index">01</span>
+            <h3>Web Stack</h3>
+          </div>
+          <div
+            className="skill-marquee-shell"
+            aria-label="Known skills scrolling from right to left"
+          >
             <div className="skill-marquee-track">
               {[...skills, ...skills].map((skill, index) => (
                 <div
@@ -244,19 +251,15 @@ const SkillsSection: React.FC = () => {
                   <span>{skill.name}</span>
                 </div>
             ))}
+            </div>
           </div>
         </div>
 
-        <div ref={agentsRef} className="mt-8 opacity-0">
-          <div className="mb-5">
-            <span className="mb-2 block font-inter text-xs uppercase tracking-[0.18em] text-vermilion/80">
-              AI agents I explore
-            </span>
-            <h3 className="font-playfair text-3xl font-medium uppercase tracking-[0.04em] text-white md:text-5xl">
-              AI Workflow
-            </h3>
+        <div ref={agentsRef} className="skill-lane mt-8 opacity-0">
+          <div className="skill-lane-heading">
+            <span className="skill-lane-index">02</span>
+            <h3>AI Workflow</h3>
           </div>
-
           <div
             className="skill-marquee-shell"
             aria-label="AI agents scrolling from left to right"
