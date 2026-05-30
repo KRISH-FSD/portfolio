@@ -56,6 +56,7 @@ const PortfolioSection: React.FC = () => {
       const items = gridRef.current.querySelectorAll('.portfolio-grid-item');
       const cursor = cursorRef.current;
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = window.matchMedia('(max-width: 640px)').matches;
 
       if (progressRef.current && sectionRef.current) {
         gsap.fromTo(
@@ -141,7 +142,7 @@ const PortfolioSection: React.FC = () => {
           );
         }
 
-        if (panel && !reduceMotion) {
+        if (panel && !reduceMotion && !isMobile) {
           gsap.fromTo(
             panel,
             { yPercent: 14 },
@@ -203,7 +204,7 @@ const PortfolioSection: React.FC = () => {
           }
         );
 
-        if (!reduceMotion) {
+        if (!reduceMotion && !isMobile) {
           gsap.fromTo(
             item,
             { scale: 0.94, filter: 'brightness(0.78) saturate(0.9)' },

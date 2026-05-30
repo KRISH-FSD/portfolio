@@ -416,25 +416,48 @@
     .portfolio-feature-card-large,
     .portfolio-feature-card:nth-child(2) {
       border-radius: 18px;
-      min-height: 380px;
+      min-height: 430px;
     }
 
     .portfolio-card-panel {
-      min-height: 54%;
-      padding: 20px;
+      min-height: 60%;
+      gap: 16px;
+      padding: 22px 18px 18px;
+      text-align: left;
+      transform: translateZ(0);
+    }
+
+    .portfolio-card-index {
+      margin-bottom: 8px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
     }
 
     .portfolio-card-panel h3 {
-      font-size: 30px;
+      max-width: 100%;
+      font-size: clamp(27px, 8.2vw, 34px);
+      line-height: 1.02;
+      overflow-wrap: anywhere;
     }
 
     .portfolio-card-panel p {
+      max-width: 100%;
+      margin-top: 10px;
       font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .portfolio-card-footer {
+      align-items: flex-start;
+      gap: 8px;
     }
 
     .portfolio-card-footer span {
       font-size: 10px;
+      line-height: 1.25;
+      max-width: 100%;
       padding: 8px 10px;
+      overflow-wrap: anywhere;
     }
   }
 
