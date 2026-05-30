@@ -379,17 +379,14 @@
   .skill-marquee-shell {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(242, 232, 232, 0.16);
-    border-radius: 999px;
+    border: 0;
+    border-radius: 0;
     background:
-      linear-gradient(90deg, rgba(14, 10, 11, 0.98), rgba(63, 11, 14, 0.68), rgba(14, 10, 11, 0.98)),
-      linear-gradient(180deg, rgba(242, 232, 232, 0.1), rgba(242, 232, 232, 0.018)),
-      rgba(8, 6, 7, 0.92);
-    padding: 18px 0;
-    backdrop-filter: blur(8px);
-    box-shadow:
-      inset 0 1px 0 rgba(242, 232, 232, 0.08),
-      0 24px 80px rgba(0, 0, 0, 0.34);
+      linear-gradient(90deg, rgba(242, 232, 232, 0.06), transparent 16%, transparent 84%, rgba(242, 232, 232, 0.06)),
+      rgba(242, 232, 232, 0.018);
+    padding: 10px 0;
+    backdrop-filter: none;
+    box-shadow: none;
     contain: layout paint;
   }
 
@@ -399,10 +396,8 @@
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    background:
-      linear-gradient(180deg, rgba(242, 232, 232, 0.09), transparent 32%),
-      repeating-linear-gradient(90deg, rgba(242, 232, 232, 0.045) 0 1px, transparent 1px 86px);
-    opacity: 0.55;
+    background: repeating-linear-gradient(90deg, rgba(242, 232, 232, 0.035) 0 1px, transparent 1px 86px);
+    opacity: 0.45;
   }
 
   .skill-marquee-shell::after {
@@ -410,16 +405,11 @@
     position: absolute;
     top: 0;
     z-index: 3;
-    width: min(20vw, 160px);
+    right: 0;
+    width: min(18vw, 130px);
     height: 100%;
     pointer-events: none;
-  }
-
-  .skill-marquee-shell::after {
-    right: 0;
-    background:
-      linear-gradient(270deg, #0E0A0B 0%, rgba(14, 10, 11, 0) 100%),
-      linear-gradient(90deg, #0E0A0B 0%, rgba(14, 10, 11, 0) 100%);
+    background: linear-gradient(270deg, #160709 0%, rgba(22, 7, 9, 0.82) 32%, rgba(22, 7, 9, 0) 100%);
   }
 
   .skill-marquee-track {
@@ -427,8 +417,8 @@
     z-index: 2;
     display: flex;
     width: max-content;
-    gap: 16px;
-    padding-inline: 20px;
+    gap: 18px;
+    padding-inline: 18px;
     animation: skillMarquee 32s linear infinite;
     transform: translate3d(0, 0, 0);
     will-change: transform;
@@ -450,21 +440,22 @@
   .skill-marquee-card {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 13px;
     width: auto;
-    min-width: 176px;
-    border: 1px solid color-mix(in srgb, var(--agent-accent, #D94436) 34%, rgba(242, 232, 232, 0.12));
-    border-radius: 999px;
+    min-width: 186px;
+    border: 1px solid color-mix(in srgb, var(--agent-accent, #D94436) 38%, rgba(242, 232, 232, 0.16));
+    border-radius: 18px;
     background:
-      linear-gradient(135deg, color-mix(in srgb, var(--agent-accent, #D94436) 22%, transparent), rgba(20, 12, 14, 0) 46%),
-      linear-gradient(180deg, rgba(242, 232, 232, 0.075), rgba(242, 232, 232, 0.018)),
-      rgba(8, 6, 7, 0.88);
-    padding: 10px 18px 10px 10px;
+      radial-gradient(circle at 16% 50%, color-mix(in srgb, var(--agent-accent, #D94436) 22%, transparent), transparent 36%),
+      linear-gradient(135deg, rgba(242, 232, 232, 0.09), rgba(242, 232, 232, 0.02)),
+      rgba(10, 7, 8, 0.9);
+    padding: 12px 18px 12px 12px;
     box-shadow:
-      inset 0 1px 0 rgba(242, 232, 232, 0.06),
-      0 14px 34px rgba(0, 0, 0, 0.24);
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 16px 36px rgba(0, 0, 0, 0.28),
+      0 0 24px color-mix(in srgb, var(--agent-accent, #D94436) 12%, transparent);
     transform: translateZ(0);
-    transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   }
 
   .skill-marquee-card:hover {
@@ -473,29 +464,33 @@
       linear-gradient(135deg, color-mix(in srgb, var(--agent-accent, #D94436) 30%, transparent), rgba(20, 12, 14, 0) 48%),
       linear-gradient(180deg, rgba(242, 232, 232, 0.1), rgba(242, 232, 232, 0.026)),
       rgba(8, 6, 7, 0.94);
-    transform: translateY(-3px) scale(1.015);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 20px 42px rgba(0, 0, 0, 0.32),
+      0 0 32px color-mix(in srgb, var(--agent-accent, #D94436) 20%, transparent);
+    transform: translateY(-4px);
   }
 
   .skill-marquee-icon {
     display: flex;
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
     border: 1px solid color-mix(in srgb, var(--agent-accent, #D94436) 34%, rgba(10, 8, 9, 0.18));
-    border-radius: 999px;
+    border-radius: 15px;
     background:
       radial-gradient(circle at 34% 24%, color-mix(in srgb, var(--agent-accent, #D94436) 18%, transparent), transparent 62%),
-      linear-gradient(180deg, #FFFFFF 0%, #F2E8E8 100%);
+      linear-gradient(180deg, #FFFFFF 0%, #F4EEEE 100%);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.72),
       0 10px 22px color-mix(in srgb, var(--agent-accent, #D94436) 18%, rgba(0, 0, 0, 0.34));
   }
 
   .skill-marquee-icon img {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     object-fit: contain;
     filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.16));
   }
@@ -585,14 +580,14 @@
     }
 
     .skill-marquee-shell {
-      border-radius: 999px;
-      padding: 16px 0;
+      border-radius: 0;
+      padding: 10px 0;
       backdrop-filter: none;
     }
 
     .skill-marquee-track {
       gap: 12px;
-      padding-inline: 14px;
+      padding-inline: 12px;
       animation-duration: 30s;
     }
 
@@ -601,16 +596,17 @@
     }
 
     .skill-marquee-card {
-      min-width: 148px;
+      min-width: 154px;
       gap: 10px;
-      padding: 8px 14px 8px 8px;
+      border-radius: 15px;
+      padding: 10px 14px 10px 10px;
       box-shadow: none;
     }
 
     .skill-marquee-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
     }
 
     .skill-marquee-icon img {

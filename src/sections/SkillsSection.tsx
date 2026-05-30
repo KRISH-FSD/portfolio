@@ -232,7 +232,7 @@ const SkillsSection: React.FC = () => {
         <div ref={marqueeRef} className="skill-lane opacity-0">
           <div className="skill-lane-heading">
             <span className="skill-lane-index">01</span>
-            <h3>Web Stack</h3>
+            <h3>Tech Skills</h3>
           </div>
           <div
             className="skill-marquee-shell"
