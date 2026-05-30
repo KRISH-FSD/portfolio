@@ -211,7 +211,7 @@ const HeroSection: React.FC = () => {
             ref={designerOverlayRef}
             className="hero-headline absolute left-[52.5%] bottom-[clamp(108px,12svh,132px)] w-screen -translate-x-1/2 z-[12] text-center opacity-0 pointer-events-none"
           >
-            <span className="block font-playfair text-sm uppercase tracking-[0.12em] text-transparent mb-2">
+            <span className="hidden md:block font-playfair text-sm uppercase tracking-[0.12em] text-transparent mb-2">
               KRISH
             </span>
             <span
@@ -237,8 +237,9 @@ const HeroSection: React.FC = () => {
             <span
               className="stack-item absolute font-playfair font-medium uppercase tracking-[0.14em] text-white/76 opacity-0 translate-y-[30px] whitespace-nowrap"
               style={{
-                left: 'calc(100% + 18px)',
+                left: 'clamp(420px, 64vw, 1120px)',
                 top: 'clamp(4px, 0.35vw, 8px)',
+                marginRight: '10px',
                 fontSize: 'clamp(15px, 1.25vw, 20px)',
               }}
             >
@@ -266,7 +267,7 @@ const HeroSection: React.FC = () => {
             ref={rightHeadlineRef}
             className="hero-headline absolute left-[52.5%] bottom-[clamp(108px,12svh,132px)] w-screen -translate-x-1/2 z-[4] text-center opacity-0"
           >
-            <span className="block font-playfair text-sm uppercase tracking-[0.12em] text-muted mb-2">
+            <span className="hidden md:block font-playfair text-sm uppercase tracking-[0.12em] text-muted mb-2">
               KRISH
             </span>
             <span

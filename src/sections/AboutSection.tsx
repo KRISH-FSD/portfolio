@@ -96,7 +96,7 @@ const AboutSection: React.FC = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="relative w-full overflow-hidden bg-black py-20 md:py-28"
+      className="relative w-full overflow-hidden bg-black pt-20 pb-10 md:pt-28 md:pb-12"
     >
       <div className="absolute left-1/2 top-24 h-64 w-[72vw] -translate-x-1/2 rounded-full bg-[#8B1A1A]/10 blur-[90px]" />
 
@@ -151,17 +151,14 @@ const AboutSection: React.FC = () => {
                 lineHeight: 1.1,
               }}
             >
-              Building clean digital{' '}
-              <span className="font-cursive normal-case text-vermilion">
-                Experiences
-              </span>
+              Building Full-Stack Web Experiences
             </h3>
             <div className="about-content-reveal space-y-5">
               <p className="font-inter text-[15px] leading-[1.85] text-cream text-justify">
-                I'm a <span className="text-vermilion">full-stack web developer</span> and BCA student passionate about building clean, modern, and responsive digital experiences with smooth user interactions. I specialize in developing scalable web applications using React, JavaScript, Python, Flask, and MySQL, with a growing interest in <span className="text-vermilion">AI</span> and data-driven solutions.
+                I'm a <span className="text-vermilion">Full-Stack Web Developer</span> and BCA student focused on building clean, responsive, and user-friendly web experiences using React, JavaScript, Python, Flask, and MySQL.
               </p>
               <p className="font-inter text-[15px] leading-[1.85] text-cream text-justify">
-                From modern landing pages to analytics dashboards and full-stack platforms, I enjoy creating fast, intuitive, and user-friendly digital products. Recently, I've worked on <span className="text-vermilion">crop analytics</span>, responsive e-commerce interfaces, and interactive React applications, combining modern frontend design with efficient backend functionality.
+                I build <span className="text-white">Full-Stack</span> web platforms that combine responsive frontends, efficient backend APIs, and database-driven workflows, with projects such as <span className="text-vermilion">Agriculture Using AI</span>, <span className="text-vermilion">AI Smart Interview Mock Coach</span>, and <span className="text-vermilion">Dynamic QR Code Generator</span>.
               </p>
             </div>
             <a
