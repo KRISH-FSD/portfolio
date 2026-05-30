@@ -11,33 +11,74 @@ const portfolioItems = [
     src: '/assets/portfolio-1.png',
     alt: 'AGRO AI crop monitoring and yield analytics dashboard',
     caption: 'AGRO AI - Crop Analytics',
+    tag: 'Full-stack analytics',
+    tech: 'Flask / MySQL / Chart.js',
+    summary: 'Crop monitoring dashboard with yield insights, CRUD tracking, and visual analytics.',
   },
   {
     src: '/assets/portfolio-2.jpg',
     alt: 'Zyra Fashion responsive e-commerce website',
     caption: 'Zyra Fashion',
+    tag: 'Responsive commerce',
+    tech: 'HTML / CSS / JavaScript',
+    summary: 'Modern fashion storefront with responsive layouts and a working hamburger menu.',
   },
   {
     src: '/assets/portfolio-3.jpg',
     alt: 'React QR code generator interface',
     caption: 'React QR Code Generator',
+    tag: 'React utility',
+    tech: 'React / Vite / ES6+',
+    summary: 'Real-time QR rendering for text and URLs with a focused generator experience.',
   },
   {
     src: '/assets/portfolio-4.jpg',
     alt: 'Web development internship project interface',
     caption: 'Learn Flu Internship',
+    tag: 'Internship work',
+    tech: 'Frontend / Backend basics',
+    summary: 'Live-project contribution covering frontend implementation and basic integration.',
   },
 ];
 
 const PortfolioSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let cleanupCursor = () => {};
+
     const ctx = gsap.context(() => {
       if (!gridRef.current) return;
 
       const items = gridRef.current.querySelectorAll('.portfolio-grid-item');
+      const cursor = cursorRef.current;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (cursor && sectionRef.current && !reduceMotion) {
+        gsap.set(cursor, { xPercent: -50, yPercent: -50, opacity: 0, scale: 0.86 });
+
+        const moveX = gsap.quickTo(cursor, 'x', { duration: 0.28, ease: 'power3.out' });
+        const moveY = gsap.quickTo(cursor, 'y', { duration: 0.28, ease: 'power3.out' });
+        const show = () => gsap.to(cursor, { opacity: 1, scale: 1, duration: 0.22, ease: 'power2.out' });
+        const hide = () => gsap.to(cursor, { opacity: 0, scale: 0.86, duration: 0.22, ease: 'power2.out' });
+        const move = (event: MouseEvent) => {
+          moveX(event.clientX);
+          moveY(event.clientY);
+        };
+
+        const section = sectionRef.current;
+        section.addEventListener('mousemove', move);
+        section.addEventListener('mouseenter', show);
+        section.addEventListener('mouseleave', hide);
+
+        cleanupCursor = () => {
+          section.removeEventListener('mousemove', move);
+          section.removeEventListener('mouseenter', show);
+          section.removeEventListener('mouseleave', hide);
+        };
+      }
 
       items.forEach((item, index) => {
         const img = item.querySelector('.grid-image');
@@ -45,15 +86,16 @@ const PortfolioSection: React.FC = () => {
         if (img) {
           gsap.fromTo(
             img,
-            { scale: 2.0 },
+            { scale: reduceMotion ? 1 : 1.18, yPercent: reduceMotion ? 0 : -4 },
             {
-              scale: 1.0,
+              scale: 1,
+              yPercent: reduceMotion ? 0 : 5,
               ease: 'none',
               scrollTrigger: {
                 trigger: item,
-                start: 'top 90%',
-                end: 'top 30%',
-                scrub: true,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.8,
               },
             }
           );
@@ -61,16 +103,23 @@ const PortfolioSection: React.FC = () => {
 
         gsap.fromTo(
           item,
-          { opacity: 0, y: 40 },
+          {
+            opacity: 0,
+            y: reduceMotion ? 0 : 80,
+            rotateX: reduceMotion ? 0 : 8,
+            clipPath: 'inset(10% 8% 10% 8% round 24px)',
+          },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            delay: index * 0.15,
-            ease: 'power2.out',
+            rotateX: 0,
+            clipPath: 'inset(0% 0% 0% 0% round 24px)',
+            duration: 0.9,
+            delay: index * 0.08,
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: item,
-              start: 'top 85%',
+              start: 'top 82%',
               toggleActions: 'play none none none',
             },
           }
@@ -78,21 +127,27 @@ const PortfolioSection: React.FC = () => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      cleanupCursor();
+      ctx.revert();
+    };
   }, []);
 
   return (
     <section
       id="portfolio"
       ref={sectionRef}
-      className="relative w-full bg-black py-20 md:py-32 overflow-hidden"
+      className="portfolio-showcase relative w-full bg-black py-20 md:py-32 overflow-hidden"
     >
       <ParticlesCanvas />
+      <div ref={cursorRef} className="portfolio-cursor" aria-hidden="true">
+        View
+      </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        <div className="mb-12 md:mb-16">
+        <div className="portfolio-showcase-header mb-12 md:mb-16">
           <h2
-            className="font-playfair uppercase text-white mb-2"
+            className="font-playfair uppercase text-white"
             style={{
               fontSize: 'clamp(48px, 8vw, 120px)',
               letterSpacing: '0.02em',
@@ -101,43 +156,33 @@ const PortfolioSection: React.FC = () => {
           >
             <HeadingReveal text="Selected Work" cursiveLastWord />
           </h2>
-          <span className="font-inter text-xs uppercase tracking-[0.12em] text-muted">
-            Data-driven apps, responsive websites, and internship project work
-          </span>
+          <p className="portfolio-showcase-copy">
+            Data-driven apps, responsive websites, and internship project work shaped into practical, polished experiences.
+          </p>
         </div>
 
-        <div ref={gridRef} className="flex flex-col gap-6">
-          <div className="flex flex-col md:flex-row gap-6">
-            <div className="portfolio-grid-item portfolio-card md:w-[60%] opacity-0">
-              <div className="grid-image-wrapper relative h-[250px] md:h-[350px]">
-                <img src={portfolioItems[0].src} alt={portfolioItems[0].alt} loading="lazy" decoding="async" className="grid-image w-full h-full object-cover" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                  <span className="font-playfair text-xl text-white">{portfolioItems[0].caption}</span>
+        <div ref={gridRef} className="portfolio-showcase-grid">
+          {portfolioItems.map((item, index) => (
+            <article
+              key={item.caption}
+              className={`portfolio-grid-item portfolio-card portfolio-feature-card opacity-0 ${index === 0 ? 'portfolio-feature-card-large' : ''}`}
+            >
+              <div className="portfolio-card-media grid-image-wrapper">
+                <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="grid-image" />
+              </div>
+              <div className="portfolio-card-panel">
+                <div>
+                  <span className="portfolio-card-index">{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{item.caption}</h3>
+                  <p>{item.summary}</p>
+                </div>
+                <div className="portfolio-card-footer">
+                  <span>{item.tag}</span>
+                  <span>{item.tech}</span>
                 </div>
               </div>
-            </div>
-            <div className="portfolio-grid-item portfolio-card md:w-[40%] opacity-0">
-              <div className="grid-image-wrapper relative h-[250px] md:h-[350px]">
-                <img src={portfolioItems[1].src} alt={portfolioItems[1].alt} loading="lazy" decoding="async" className="grid-image w-full h-full object-cover" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                  <span className="font-playfair text-xl text-white">{portfolioItems[1].caption}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-6">
-            {portfolioItems.slice(2).map((item) => (
-              <div key={item.caption} className="portfolio-grid-item portfolio-card md:w-1/2 opacity-0">
-                <div className="grid-image-wrapper relative h-[200px] md:h-[280px]">
-                  <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="grid-image w-full h-full object-cover" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                    <span className="font-playfair text-xl text-white">{item.caption}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
