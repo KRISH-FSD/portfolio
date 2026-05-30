@@ -378,7 +378,6 @@
   }
 
   .ai-agent-icon {
-    position: relative;
     border-color: color-mix(in srgb, var(--agent-accent, #D94436) 34%, rgba(242, 232, 232, 0.08));
     background:
       radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--agent-accent, #D94436) 26%, transparent), transparent 58%),
@@ -387,24 +386,9 @@
   }
 
   .ai-agent-icon img {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 0;
-  }
-
-  .ai-agent-toolmark {
-    position: absolute;
-    right: -5px;
-    bottom: -5px;
-    display: grid;
-    width: 20px;
-    height: 20px;
-    place-items: center;
-    border: 1px solid color-mix(in srgb, var(--agent-accent, #D94436) 62%, rgba(242, 232, 232, 0.2));
-    border-radius: 999px;
-    background: #120B0D;
-    color: var(--agent-accent, #D94436);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
   }
 
   .skill-marquee-card span {
@@ -475,15 +459,8 @@
     }
 
     .ai-agent-icon img {
-      width: 28px;
-      height: 28px;
-    }
-
-    .ai-agent-toolmark {
-      right: -4px;
-      bottom: -4px;
-      width: 18px;
-      height: 18px;
+      width: 30px;
+      height: 30px;
     }
 
     .skill-marquee-card span {
