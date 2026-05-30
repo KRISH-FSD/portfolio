@@ -45,6 +45,7 @@ const PortfolioSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let cleanupCursor = () => {};
@@ -55,6 +56,23 @@ const PortfolioSection: React.FC = () => {
       const items = gridRef.current.querySelectorAll('.portfolio-grid-item');
       const cursor = cursorRef.current;
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (progressRef.current && sectionRef.current) {
+        gsap.fromTo(
+          progressRef.current,
+          { scaleX: 0, transformOrigin: 'left center' },
+          {
+            scaleX: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 70%',
+              end: 'bottom bottom',
+              scrub: 0.6,
+            },
+          }
+        );
+      }
 
       if (cursor && sectionRef.current && !reduceMotion) {
         gsap.set(cursor, { xPercent: -50, yPercent: -50, opacity: 0, scale: 0.86 });
@@ -83,6 +101,8 @@ const PortfolioSection: React.FC = () => {
       items.forEach((item, index) => {
         const card = item as HTMLElement;
         const img = item.querySelector('.grid-image');
+        const media = item.querySelector('.portfolio-card-media');
+        const panel = item.querySelector('.portfolio-card-panel');
         const panelItems = item.querySelectorAll('.portfolio-card-index, .portfolio-card-panel h3, .portfolio-card-panel p, .portfolio-card-footer span');
 
         if (img) {
@@ -98,6 +118,41 @@ const PortfolioSection: React.FC = () => {
                 start: 'top bottom',
                 end: 'bottom top',
                 scrub: 0.7,
+              },
+            }
+          );
+        }
+
+        if (media && !reduceMotion) {
+          gsap.fromTo(
+            media,
+            { rotateZ: index % 2 === 0 ? -1.8 : 1.8, scale: 1.04 },
+            {
+              rotateZ: 0,
+              scale: 1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 88%',
+                end: 'top 28%',
+                scrub: 0.9,
+              },
+            }
+          );
+        }
+
+        if (panel && !reduceMotion) {
+          gsap.fromTo(
+            panel,
+            { yPercent: 14 },
+            {
+              yPercent: -4,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: item,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1,
               },
             }
           );
@@ -149,16 +204,21 @@ const PortfolioSection: React.FC = () => {
         );
 
         if (!reduceMotion) {
-          gsap.to(item, {
-            y: index % 2 === 0 ? -34 : -18,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: item,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1.1,
-            },
-          });
+          gsap.fromTo(
+            item,
+            { scale: 0.94, filter: 'brightness(0.78) saturate(0.9)' },
+            {
+              scale: 1,
+              filter: 'brightness(1) saturate(1)',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 95%',
+                end: 'top 42%',
+                scrub: 0.85,
+              },
+            }
+          );
 
           const rotateX = gsap.quickTo(card, 'rotationX', { duration: 0.35, ease: 'power3.out' });
           const rotateY = gsap.quickTo(card, 'rotationY', { duration: 0.35, ease: 'power3.out' });
@@ -205,6 +265,9 @@ const PortfolioSection: React.FC = () => {
       className="portfolio-showcase relative w-full bg-black py-20 md:py-32 overflow-hidden"
     >
       <ParticlesCanvas />
+      <div className="portfolio-scroll-progress" aria-hidden="true">
+        <div ref={progressRef} />
+      </div>
       <div ref={cursorRef} className="portfolio-cursor" aria-hidden="true">
         View
       </div>
