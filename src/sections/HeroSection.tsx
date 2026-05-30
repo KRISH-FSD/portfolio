@@ -132,7 +132,7 @@ const HeroSection: React.FC = () => {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#0E0A0B]"
+      className="relative w-full h-[100svh] min-h-[720px] flex items-center justify-center overflow-hidden bg-[#0E0A0B]"
     >
       {/* Hero loader */}
       <div
@@ -170,7 +170,7 @@ const HeroSection: React.FC = () => {
 
       {/* Content overlay */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        <div className="relative flex items-center justify-center min-h-[100dvh]">
+        <div className="relative flex items-center justify-center h-[100svh] min-h-[720px]">
 
           {/* Background watermark "Portfolio" */}
           <div
@@ -196,19 +196,20 @@ const HeroSection: React.FC = () => {
             alt="Krishnakanth"
             loading="eager"
             decoding="async"
-            className="absolute bottom-0 z-[5] max-h-[86vh] md:max-h-[92vh] w-auto object-contain opacity-0"
+            className="absolute bottom-0 z-[5] w-auto object-contain opacity-0"
             style={{
               left: 'calc(50% + 15px)',
+              maxHeight: 'min(92svh, 860px)',
               filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.5))',
               WebkitMaskImage: 'linear-gradient(to bottom, #000 0%, #000 88%, rgba(0,0,0,0.72) 96%, transparent 100%)',
               maskImage: 'linear-gradient(to bottom, #000 0%, #000 88%, rgba(0,0,0,0.72) 96%, transparent 100%)',
             }}
           />
 
-          {/* Outlined DESIGNER overlay above portrait */}
+          {/* Outlined DEVELOPER overlay above portrait */}
           <div
             ref={designerOverlayRef}
-            className="absolute left-[57%] top-[75%] w-screen -translate-x-1/2 -translate-y-1/2 z-[12] text-center opacity-0 pointer-events-none"
+            className="absolute left-[52.5%] bottom-[clamp(108px,12svh,132px)] w-screen -translate-x-1/2 z-[12] text-center opacity-0 pointer-events-none"
           >
             <span className="block font-playfair text-sm uppercase tracking-[0.12em] text-transparent mb-2">
               KRISH
@@ -216,7 +217,7 @@ const HeroSection: React.FC = () => {
             <span
               className="block font-playfair font-normal uppercase leading-[0.9]"
               style={{
-                fontSize: 'clamp(66px, 12.8vw, 225px)',
+                fontSize: 'clamp(66px, min(12.8vw, 24svh), 225px)',
                 letterSpacing: '0.01em',
                 color: 'transparent',
                 WebkitTextStroke: '1.5px #F2E8E8',
@@ -230,14 +231,15 @@ const HeroSection: React.FC = () => {
           {/* Left stack - UI/UX / WEB */}
           <div
             ref={leftStackRef}
-            className="absolute top-[68%] -translate-y-1/2 z-[20] flex flex-col gap-0"
+            className="absolute bottom-[clamp(178px,25svh,240px)] z-[20] flex flex-col gap-0"
             style={{ left: 'calc(50% - 45vw)', marginLeft: '80px' }}
           >
             <span
-              className="stack-item absolute font-playfair text-sm font-medium uppercase tracking-[0.14em] text-white/76 opacity-0 translate-y-[30px] whitespace-nowrap"
+              className="stack-item absolute font-playfair font-medium uppercase tracking-[0.14em] text-white/76 opacity-0 translate-y-[30px] whitespace-nowrap"
               style={{
                 left: 'calc(100% + 18px)',
-                top: 'clamp(10px, 0.8vw, 16px)',
+                top: 'clamp(4px, 0.35vw, 8px)',
+                fontSize: 'clamp(15px, 1.25vw, 20px)',
               }}
             >
               HEY, I'M{' '}
@@ -259,10 +261,10 @@ const HeroSection: React.FC = () => {
             </span>
           </div>
 
-          {/* Center headline - KRISH + DESIGNER */}
+          {/* Center headline - KRISH + DEVELOPER */}
           <div
             ref={rightHeadlineRef}
-            className="absolute left-[57%] top-[75%] w-screen -translate-x-1/2 -translate-y-1/2 z-[4] text-center opacity-0"
+            className="absolute left-[52.5%] bottom-[clamp(108px,12svh,132px)] w-screen -translate-x-1/2 z-[4] text-center opacity-0"
           >
             <span className="block font-playfair text-sm uppercase tracking-[0.12em] text-muted mb-2">
               KRISH
@@ -270,7 +272,7 @@ const HeroSection: React.FC = () => {
             <span
               className="block font-playfair font-normal uppercase leading-[0.9]"
               style={{
-                fontSize: 'clamp(66px, 12.8vw, 225px)',
+                fontSize: 'clamp(66px, min(12.8vw, 24svh), 225px)',
                 letterSpacing: '0.01em',
                 color: '#FFFFFF',
               }}
