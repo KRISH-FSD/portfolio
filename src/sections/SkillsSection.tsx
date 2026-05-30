@@ -8,50 +8,62 @@ const skills = [
   {
     name: 'Java',
     image: '/assets/skill-icons/java.webp',
+    accent: '#E76F00',
   },
   {
     name: 'Python',
     image: '/assets/skill-icons/python.webp',
+    accent: '#3776AB',
   },
   {
     name: 'HTML',
     image: '/assets/skill-icons/html.webp',
+    accent: '#E34F26',
   },
   {
     name: 'CSS',
     image: '/assets/skill-icons/css.webp',
+    accent: '#1572B6',
   },
   {
     name: 'JavaScript',
     image: '/assets/skill-icons/javascript.webp',
+    accent: '#F7DF1E',
   },
   {
     name: 'React',
     image: '/assets/skill-icons/react.webp',
+    accent: '#61DAFB',
   },
   {
     name: 'Flask',
     image: '/assets/skill-icons/flask.webp',
+    accent: '#F8FAFC',
   },
   {
     name: 'MySQL',
     image: '/assets/skill-icons/mysql.webp',
+    accent: '#00758F',
   },
   {
     name: 'Git',
     image: '/assets/skill-icons/git.webp',
+    accent: '#F05032',
   },
   {
     name: 'GitHub',
     image: '/assets/skill-icons/github.webp',
+    accent: '#F8FAFC',
   },
   {
     name: 'VS Code',
     image: '/assets/skill-icons/vscode.webp',
+    accent: '#007ACC',
   },
   {
     name: 'Vite',
     image: '/assets/skill-icons/vite.webp',
+    accent: '#A855F7',
   },
 ];
 
@@ -82,7 +94,7 @@ const aiAgents: Array<{
   },
   {
     name: 'Kimi',
-    image: '/assets/ai-agent-icons/kimi.webp',
+    image: '/assets/ai-agents/kimi.webp',
     accent: '#38BDF8',
   },
   {
@@ -221,7 +233,11 @@ const SkillsSection: React.FC = () => {
         >
             <div className="skill-marquee-track">
               {[...skills, ...skills].map((skill, index) => (
-                <div className="skill-marquee-card" key={`${skill.name}-${index}`}>
+                <div
+                  className="skill-marquee-card"
+                  key={`${skill.name}-${index}`}
+                  style={{ '--agent-accent': skill.accent } as React.CSSProperties}
+                >
                   <div className="skill-marquee-icon">
                     <img src={skill.image} alt="" width={28} height={28} loading="lazy" decoding="async" />
                   </div>
