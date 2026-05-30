@@ -205,6 +205,32 @@
     grid-column: span 6;
     min-height: clamp(360px, 42vw, 560px);
     transform-style: preserve-3d;
+    will-change: transform;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .portfolio-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.12) 42%, transparent 58%);
+    opacity: 0;
+    transform: translateX(-35%);
+    transition: opacity 0.35s ease, transform 0.7s ease;
+  }
+
+  .portfolio-card:hover {
+    border-color: rgba(242, 232, 232, 0.26);
+    box-shadow:
+      0 34px 95px rgba(0, 0, 0, 0.38),
+      0 0 44px rgba(217, 68, 54, 0.12);
+  }
+
+  .portfolio-card:hover::before {
+    opacity: 1;
+    transform: translateX(35%);
   }
 
   .portfolio-feature-card-large {
@@ -253,6 +279,7 @@
     justify-content: space-between;
     gap: 24px;
     padding: clamp(22px, 3vw, 36px);
+    transform: translateZ(42px);
   }
 
   .portfolio-card-index {

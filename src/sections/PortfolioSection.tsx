@@ -81,21 +81,42 @@ const PortfolioSection: React.FC = () => {
       }
 
       items.forEach((item, index) => {
+        const card = item as HTMLElement;
         const img = item.querySelector('.grid-image');
+        const panelItems = item.querySelectorAll('.portfolio-card-index, .portfolio-card-panel h3, .portfolio-card-panel p, .portfolio-card-footer span');
 
         if (img) {
           gsap.fromTo(
             img,
-            { scale: reduceMotion ? 1 : 1.18, yPercent: reduceMotion ? 0 : -4 },
+            { scale: reduceMotion ? 1 : 1.34, yPercent: reduceMotion ? 0 : -9 },
             {
-              scale: 1,
-              yPercent: reduceMotion ? 0 : 5,
+              scale: reduceMotion ? 1 : 0.98,
+              yPercent: reduceMotion ? 0 : 8,
               ease: 'none',
               scrollTrigger: {
                 trigger: item,
                 start: 'top bottom',
                 end: 'bottom top',
-                scrub: 0.8,
+                scrub: 0.7,
+              },
+            }
+          );
+        }
+
+        if (panelItems.length) {
+          gsap.fromTo(
+            panelItems,
+            { opacity: 0, y: reduceMotion ? 0 : 22 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.72,
+              stagger: 0.07,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 72%',
+                toggleActions: 'play none none none',
               },
             }
           );
@@ -105,18 +126,20 @@ const PortfolioSection: React.FC = () => {
           item,
           {
             opacity: 0,
-            y: reduceMotion ? 0 : 80,
-            rotateX: reduceMotion ? 0 : 8,
-            clipPath: 'inset(10% 8% 10% 8% round 24px)',
+            y: reduceMotion ? 0 : 96,
+            rotateX: reduceMotion ? 0 : 12,
+            rotateZ: reduceMotion ? 0 : index % 2 === 0 ? -1.4 : 1.4,
+            clipPath: 'inset(14% 10% 14% 10% round 24px)',
           },
           {
             opacity: 1,
             y: 0,
             rotateX: 0,
+            rotateZ: 0,
             clipPath: 'inset(0% 0% 0% 0% round 24px)',
-            duration: 0.9,
+            duration: 1.05,
             delay: index * 0.08,
-            ease: 'power3.out',
+            ease: 'expo.out',
             scrollTrigger: {
               trigger: item,
               start: 'top 82%',
@@ -124,6 +147,48 @@ const PortfolioSection: React.FC = () => {
             },
           }
         );
+
+        if (!reduceMotion) {
+          gsap.to(item, {
+            y: index % 2 === 0 ? -34 : -18,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: item,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.1,
+            },
+          });
+
+          const rotateX = gsap.quickTo(card, 'rotationX', { duration: 0.35, ease: 'power3.out' });
+          const rotateY = gsap.quickTo(card, 'rotationY', { duration: 0.35, ease: 'power3.out' });
+          const lift = gsap.quickTo(card, 'z', { duration: 0.35, ease: 'power3.out' });
+
+          const handleMove = (event: MouseEvent) => {
+            const rect = card.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+            rotateX(y * -7);
+            rotateY(x * 7);
+            lift(34);
+          };
+
+          const handleLeave = () => {
+            rotateX(0);
+            rotateY(0);
+            lift(0);
+          };
+
+          card.addEventListener('mousemove', handleMove);
+          card.addEventListener('mouseleave', handleLeave);
+
+          const previousCleanup = cleanupCursor;
+          cleanupCursor = () => {
+            previousCleanup();
+            card.removeEventListener('mousemove', handleMove);
+            card.removeEventListener('mouseleave', handleLeave);
+          };
+        }
       });
     }, sectionRef);
 
