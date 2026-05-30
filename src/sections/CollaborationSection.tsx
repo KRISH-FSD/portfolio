@@ -74,8 +74,8 @@ const CollaborationSection: React.FC = () => {
             </h2>
 
             <p className="font-inter text-lg text-brown leading-[1.7] max-w-[520px] mb-6">
-              Have a project, collaboration, or design idea in mind?
-              I am open to freelance work, internships, and creative web projects.
+              Open to AI, data-oriented, internship, and web development opportunities.
+              I enjoy building practical Flask, MySQL, and responsive frontend projects.
             </p>
 
             <a
@@ -148,7 +148,7 @@ const CollaborationSection: React.FC = () => {
             </div>
 
             <span className="font-inter text-sm font-semibold uppercase tracking-[0.22em] text-brown mt-6 text-center">
-              KRISHNAKANTH
+              KRISHNAKANTH S
             </span>
           </div>
         </div>

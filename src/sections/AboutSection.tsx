@@ -151,14 +151,14 @@ const AboutSection: React.FC = () => {
                 lineHeight: 1.1,
               }}
             >
-              Building Full-Stack Web Experiences
+              AI & Data-Focused BCA Student
             </h3>
             <div className="about-content-reveal space-y-5">
               <p className="font-inter text-[15px] leading-[1.85] text-cream text-justify">
-                I'm a <span className="text-vermilion">Full-Stack Web Developer</span> and BCA student focused on building clean, responsive, and user-friendly web experiences using React, JavaScript, Python, Flask, and MySQL.
+                I'm a <span className="text-vermilion">BCA student and tech enthusiast</span> focused on Python, Flask backend development, MySQL, and data-driven web applications.
               </p>
               <p className="font-inter text-[15px] leading-[1.85] text-cream text-justify">
-                I build <span className="text-white">Full-Stack</span> web platforms that combine responsive frontends, efficient backend APIs, and database-driven workflows, with projects such as <span className="text-vermilion">Agriculture Using AI</span>, <span className="text-vermilion">AI Smart Interview Mock Coach</span>, and <span className="text-vermilion">Dynamic QR Code Generator</span>.
+                I build <span className="text-white">analytics-focused</span> projects that combine responsive frontends, REST APIs, database workflows, and visual dashboards, including <span className="text-vermilion">AGRO AI</span>, <span className="text-vermilion">Zyra Fashion</span>, and a <span className="text-vermilion">React QR Code Generator</span>.
               </p>
             </div>
             <a

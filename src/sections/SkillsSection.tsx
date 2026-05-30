@@ -218,12 +218,14 @@ const SkillsSection: React.FC = () => {
           </div>
           <div className="skills-copy">
             <p>
-              Tools and technologies I use for frontend interfaces, Flask backend
-              work, database handling, and project delivery.
+              Languages, frontend tools, Flask backend development, MySQL,
+              REST APIs, JSON handling, and AI tools from my resume.
             </p>
             <div className="skills-pills" aria-label="Skill categories">
+              <span>Languages</span>
               <span>Frontend</span>
               <span>Backend</span>
+              <span>Database</span>
               <span>AI Workflow</span>
             </div>
           </div>

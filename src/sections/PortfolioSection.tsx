@@ -9,23 +9,23 @@ gsap.registerPlugin(ScrollTrigger);
 const portfolioItems = [
   {
     src: '/assets/portfolio-1.png',
-    alt: 'SaaS dashboard redesign',
-    caption: 'Zyra Ecommerse Site',
+    alt: 'AGRO AI crop monitoring and yield analytics dashboard',
+    caption: 'AGRO AI - Crop Analytics',
   },
   {
     src: '/assets/portfolio-2.jpg',
-    alt: 'Creative agency landing page',
-    caption: 'Collage Event Festival Website',
+    alt: 'Zyra Fashion responsive e-commerce website',
+    caption: 'Zyra Fashion',
   },
   {
     src: '/assets/portfolio-3.jpg',
-    alt: 'Personal portfolio website',
-    caption: 'Portfolio Website',
+    alt: 'React QR code generator interface',
+    caption: 'React QR Code Generator',
   },
   {
     src: '/assets/portfolio-4.jpg',
-    alt: 'Fashion brand e-commerce website',
-    caption: 'E-commerce Concept',
+    alt: 'Web development internship project interface',
+    caption: 'Learn Flu Internship',
   },
 ];
 
@@ -102,7 +102,7 @@ const PortfolioSection: React.FC = () => {
             <HeadingReveal text="Selected Work" cursiveLastWord />
           </h2>
           <span className="font-inter text-xs uppercase tracking-[0.12em] text-muted">
-            Website design, redesigns, and polished interface concepts
+            Data-driven apps, responsive websites, and internship project work
           </span>
         </div>
 
