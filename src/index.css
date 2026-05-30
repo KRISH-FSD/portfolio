@@ -1,0 +1,348 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.625rem;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0E0A0B;
+    color: #F2E8E8;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@layer components {
+  .heading-reveal-mask {
+    position: relative;
+    overflow: visible;
+  }
+
+  .char-reveal-inner {
+    display: inline-block;
+    will-change: transform;
+    transform: translateX(-120%);
+  }
+
+  [data-scroll="heading-reveal"].is-visible .char-reveal-inner {
+    animation: charReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes charReveal {
+    from {
+      transform: translateX(-120%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .grid-image-wrapper {
+    overflow: hidden;
+    will-change: transform;
+  }
+
+  .grid-image {
+    transform: scale(2);
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grid-image {
+      transform: scale(1);
+    }
+  }
+
+  .glass-card {
+    background: rgba(74, 4, 4, 0.6);
+    border: 1px solid rgba(217, 68, 54, 0.15);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+  }
+
+  .glass-card-dark {
+    background: rgba(14, 10, 11, 0.8);
+    border: 1px solid rgba(138, 26, 26, 0.2);
+    border-radius: 12px;
+  }
+
+  .process-card-hover {
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .process-card-hover:hover {
+    border-color: rgba(217, 68, 54, 0.4);
+    transform: translateY(-4px);
+  }
+
+  .tilt-card-container {
+    perspective: 1000px;
+  }
+
+  .tilt-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+    position: relative;
+  }
+
+  .tilt-card .shine {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .tilt-card:hover .shine {
+    opacity: 1;
+  }
+
+  .portfolio-card {
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(138, 26, 26, 0.15);
+    position: relative;
+  }
+
+  .portfolio-card img {
+    transition: transform 0.6s ease;
+  }
+
+  .portfolio-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .mobile-card {
+    border-radius: 24px;
+    border: 1px solid rgba(138, 26, 26, 0.2);
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .mobile-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .skill-marquee-shell {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(217, 68, 54, 0.16);
+    border-radius: 16px;
+    background:
+      linear-gradient(90deg, rgba(14, 10, 11, 0.98), rgba(74, 4, 4, 0.34), rgba(14, 10, 11, 0.98)),
+      rgba(14, 10, 11, 0.86);
+    padding: 20px 0;
+    backdrop-filter: blur(8px);
+    contain: layout paint;
+  }
+
+  .skill-marquee-shell::before,
+  .skill-marquee-shell::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    width: min(20vw, 160px);
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .skill-marquee-shell::before {
+    left: 0;
+    background: linear-gradient(90deg, #0E0A0B 0%, rgba(14, 10, 11, 0) 100%);
+  }
+
+  .skill-marquee-shell::after {
+    right: 0;
+    background: linear-gradient(270deg, #0E0A0B 0%, rgba(14, 10, 11, 0) 100%);
+  }
+
+  .skill-marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 18px;
+    padding-inline: 18px;
+    animation: skillMarquee 32s linear infinite;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+
+  .skill-marquee-track-reverse {
+    animation-name: skillMarqueeReverse;
+    animation-duration: 36s;
+  }
+
+  .skill-marquee-shell:hover .skill-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .skills-motion-paused .skill-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .skill-marquee-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: auto;
+    min-width: 168px;
+    border: 1px solid rgba(217, 68, 54, 0.18);
+    border-radius: 12px;
+    background:
+      linear-gradient(180deg, rgba(242, 232, 232, 0.055), rgba(242, 232, 232, 0.018)),
+      rgba(14, 10, 11, 0.74);
+    padding: 14px 18px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+    transform: translateZ(0);
+  }
+
+  .skill-marquee-icon {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(242, 232, 232, 0.08);
+    border-radius: 10px;
+    background: rgba(242, 232, 232, 0.08);
+  }
+
+  .skill-marquee-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .ai-agent-card {
+    border-color: rgba(242, 232, 232, 0.14);
+    background: rgba(20, 12, 14, 0.78);
+  }
+
+  .ai-agent-icon {
+    background: rgba(242, 232, 232, 0.08);
+  }
+
+  .ai-agent-icon img {
+    width: 32px;
+    height: 32px;
+    border-radius: 0;
+  }
+
+  .skill-marquee-card span {
+    color: #F2E8E8;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+  }
+
+  @keyframes skillMarquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes skillMarqueeReverse {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .skill-marquee-shell {
+      border-radius: 12px;
+      padding: 14px 0;
+      backdrop-filter: none;
+    }
+
+    .skill-marquee-track {
+      gap: 10px;
+      padding-inline: 12px;
+      animation-duration: 30s;
+    }
+
+    .skill-marquee-track-reverse {
+      animation-duration: 32s;
+    }
+
+    .skill-marquee-card {
+      min-width: 142px;
+      gap: 10px;
+      padding: 12px 14px;
+      box-shadow: none;
+    }
+
+    .skill-marquee-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+    }
+
+    .skill-marquee-icon img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .ai-agent-icon img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .skill-marquee-card span {
+      font-size: 11px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skill-marquee-track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: auto;
+    }
+  }
+}
