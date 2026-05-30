@@ -132,7 +132,7 @@ const HeroSection: React.FC = () => {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative w-full h-[100svh] min-h-[720px] flex items-center justify-center overflow-hidden bg-[#0E0A0B]"
+      className="relative flex h-[100svh] min-h-[100svh] w-full max-w-full items-center justify-center overflow-hidden bg-[#0E0A0B] md:min-h-[720px]"
     >
       {/* Hero loader */}
       <div
@@ -169,13 +169,13 @@ const HeroSection: React.FC = () => {
       />
 
       {/* Content overlay */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-        <div className="relative flex items-center justify-center h-[100svh] min-h-[720px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] overflow-hidden px-4 md:px-12 lg:px-20">
+        <div className="relative flex h-[100svh] min-h-[100svh] items-center justify-center md:min-h-[720px]">
 
           {/* Background watermark "Portfolio" */}
           <div
             ref={watermarkRef}
-            className="absolute left-1/2 top-[35%] w-screen -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none opacity-0 select-none"
+            className="hero-watermark absolute left-1/2 top-[35%] w-screen -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none opacity-0 select-none"
           >
             <span
               className="font-playfair uppercase text-[rgba(139,26,26,0.15)] leading-none whitespace-nowrap block"
@@ -196,7 +196,7 @@ const HeroSection: React.FC = () => {
             alt="Krishnakanth"
             loading="eager"
             decoding="async"
-            className="absolute bottom-0 z-[5] w-auto object-contain opacity-0"
+            className="hero-portrait absolute bottom-0 z-[5] w-auto object-contain opacity-0"
             style={{
               left: 'calc(50% + 15px)',
               maxHeight: 'min(92svh, 860px)',
@@ -209,7 +209,7 @@ const HeroSection: React.FC = () => {
           {/* Outlined DEVELOPER overlay above portrait */}
           <div
             ref={designerOverlayRef}
-            className="absolute left-[52.5%] bottom-[clamp(108px,12svh,132px)] w-screen -translate-x-1/2 z-[12] text-center opacity-0 pointer-events-none"
+            className="hero-headline absolute left-[52.5%] bottom-[clamp(108px,12svh,132px)] w-screen -translate-x-1/2 z-[12] text-center opacity-0 pointer-events-none"
           >
             <span className="block font-playfair text-sm uppercase tracking-[0.12em] text-transparent mb-2">
               KRISH
@@ -231,7 +231,7 @@ const HeroSection: React.FC = () => {
           {/* Left stack - UI/UX / WEB */}
           <div
             ref={leftStackRef}
-            className="absolute bottom-[clamp(178px,25svh,240px)] z-[20] flex flex-col gap-0"
+            className="hero-left-stack absolute bottom-[clamp(178px,25svh,240px)] z-[20] flex flex-col gap-0"
             style={{ left: 'calc(50% - 45vw)', marginLeft: '80px' }}
           >
             <span
@@ -264,7 +264,7 @@ const HeroSection: React.FC = () => {
           {/* Center headline - KRISH + DEVELOPER */}
           <div
             ref={rightHeadlineRef}
-            className="absolute left-[52.5%] bottom-[clamp(108px,12svh,132px)] w-screen -translate-x-1/2 z-[4] text-center opacity-0"
+            className="hero-headline absolute left-[52.5%] bottom-[clamp(108px,12svh,132px)] w-screen -translate-x-1/2 z-[4] text-center opacity-0"
           >
             <span className="block font-playfair text-sm uppercase tracking-[0.12em] text-muted mb-2">
               KRISH

@@ -53,14 +53,14 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef }) => {
   return (
     <>
       <nav
-        className={`fixed left-0 right-0 top-0 z-50 px-5 transition-all duration-500 md:px-8 ${
+        className={`fixed left-0 right-0 top-0 z-[80] w-full max-w-full px-5 pt-[max(1rem,env(safe-area-inset-top))] transition-all duration-500 md:px-8 ${
           scrolled
-            ? 'py-4 bg-[#0E0A0B]/90'
-            : 'py-6 bg-transparent'
+            ? 'pb-4 bg-[#0E0A0B]/90'
+            : 'pb-6 bg-transparent'
         }`}
       >
         <div
-          className="mx-auto flex max-w-[1400px] items-center justify-between"
+          className="mx-auto flex w-full max-w-[1400px] items-center justify-between"
         >
           {/* Brand */}
           <a
@@ -99,7 +99,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef }) => {
 
           {/* Mobile Hamburger */}
           <button
-            className="flex h-10 w-10 items-center justify-center text-white transition hover:text-vermilion md:hidden"
+            className="relative z-[90] flex h-11 w-11 shrink-0 items-center justify-center text-white transition hover:text-vermilion md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
@@ -111,7 +111,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef }) => {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col justify-end bg-[#0E0A0B] px-4 pb-4 pt-24 transition-all duration-500 md:hidden ${
+        className={`fixed inset-0 z-[70] flex max-w-full flex-col justify-end overflow-x-hidden bg-[#0E0A0B] px-4 pb-4 pt-24 transition-all duration-500 md:hidden ${
           mobileOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
